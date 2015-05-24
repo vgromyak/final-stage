@@ -7,11 +7,16 @@
   // the lower the number means longer processing time
   define("DETAIL", 5);
   
-  define("DEFAULT_WIDTH", 500);
-  define("DEFAULT_HEIGHT", 100);
-  define("DEFAULT_FOREGROUND", "#FF0000");
-  define("DEFAULT_BACKGROUND", "#FFFFFF");
-  
+//  define("DEFAULT_WIDTH", 500);
+//  define("DEFAULT_HEIGHT", 100);
+  define("DEFAULT_WIDTH", 800);
+  define("DEFAULT_HEIGHT", 300);
+//  define("DEFAULT_FOREGROUND", "#FF0000");
+//  define("DEFAULT_BACKGROUND", "#FFFFFF");
+
+  define("DEFAULT_FOREGROUND", "#428BCA");
+  define("DEFAULT_BACKGROUND", "#EEEEEE");
+
   /**
    * GENERAL FUNCTIONS
    */
@@ -41,10 +46,10 @@
      */
   
     // temporary file name
-    $tmpname = substr(md5(microtime(1)), 0, 10);
+    $tmpname = '/tmp/'. substr(md5(microtime(1)), 0, 10);
 
     // copy from temp upload directory to current
-      $tmpFile = "/tmp/{$tmpname}_o.mp3";
+      $tmpFile = "{$tmpname}_o.mp3";
       copy($mp3File, $tmpFile);
 		// support for stereo waveform?
     $stereo = true;

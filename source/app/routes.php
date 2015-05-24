@@ -41,6 +41,7 @@ $app->get('/waveform/', function () use ($app,$container) {
 
 
     include(__DIR__ .'/../third-party-lib/php-waveform-png.php');
+    $app->contentType('image/png');
     makeWaveform($storageOutcome->getFilePath($key));
 });
 
@@ -87,14 +88,15 @@ $app->get('/edit/upload/', function () use ($app, $container) {
         header("Content-Description: File Transfer");
         header("Content-Length: ". strlen($content).";");
         header("Content-Disposition: attachment; filename={$key}.mp3");
-        header("Content-Type: " . \UWC\App\Forms\ProvideFile::$availableMimeTypes[1] . "; ");
+        $app->contentType(\UWC\App\Forms\ProvideFile::$availableMimeTypes[1]);
+        //header("Content-Type: " . \UWC\App\Forms\ProvideFile::$availableMimeTypes[1] . "; ");
         echo $content;
     } catch (\Exception $e) {
         //todo: forward to pretty error
     }
 });
 $app->get('/edit/send-email/', function () use ($renderFile) {
-    $renderFile('edit-form-email');
+    $renderFile('send-to-email');
 });
 
 $app->get('/about/', function () use ($renderContent)  {
