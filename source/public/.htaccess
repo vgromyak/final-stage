@@ -1,0 +1,4 @@
+php_value  iconv.input_encoding  UTF-8
+php_value  iconv.internal_encoding  UTF-8
+php_value  iconv.output_encoding  UTF-8
+php_value  mbstring.internal_encoding  UTF-8

@@ -1,0 +1,9 @@
+<h1>Edit ID3 Tag</h1>
+<?php include(dirname(__FILE__) . '/edit-wizard.phtml');
+echo $form;
+if (!empty($errors)) :
+    ?>
+    <p class="alert media bg-danger">
+        <?php echo implode('<br>', $errors);?>
+    </p>
+<?php endif;?>

@@ -1,0 +1,36 @@
+<h1>Upload file</h1>
+<?php include(dirname(__FILE__) . '/edit-wizard.phtml');?>
+<iframe src="/provide-file-form/" height="500" width="580" frameborder="0" id="frame"></iframe>
+<script>
+    $(document).ready(
+        function() {
+            $('#frame').load(function() {
+                var form = $('#frame').contents().find('#file-provider');
+                $(form).on('submit', function () {
+                    var unique = $(form).find('input[name=<?php echo \UWC\App\Forms\Edit::getProgressName()?>]').val();
+                    $(function() {
+                        setInterval(function() {
+//                            $.getJSON(
+//                                '/upload-progress/',
+//                                {'unique':unique},
+//                                function(data) {
+//                                    var percent = data.percent;
+//                                    if (percent >= 100) {
+//                                        //goto step 2
+//                                    } else {
+//                                        $('#ajax').html(percent);
+//                                    }
+//                                });
+                            $.get(
+                                '/upload-progress/',
+                                {'unique':unique},
+                                function(data) {
+                                    alert($data);
+                                });
+                        }, 1000);
+                    });
+                });
+            });
+        });
+</script>
+<div id="ajax"></div>

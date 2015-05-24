@@ -1,0 +1,36 @@
+<h1>Upload file</h1>
+<?php include(dirname(__FILE__) . '/edit-wizard.phtml');
+echo $form;
+if (!empty($errors)) :
+?>
+<p class="alert media bg-danger">
+    <?php echo implode('<br>', $errors);?>
+</p>
+<?php endif;?>
+<script type="text/javascript">
+    $(document).ready(
+        function() {
+            $('input[name="type"]').change(function (event) {
+                processSelection(event.target.value);
+            });
+            processSelection();
+        });
+    function processSelection(currentValue)
+    {
+        if ($('#item-type-download input:checked').length) {
+            if (currentValue && currentValue != 'download') {
+                return;
+            }
+            $("#item-content").slideUp();
+            $("#item-url").slideDown();
+            $("#item-file").slideUp();
+        } else if ($('#item-type-uploaded input:checked').length) {
+            if (currentValue && currentValue != 'uploaded') {
+                return;
+            }
+            $("#item-content").slideUp();
+            $("#item-url").slideUp();
+            $("#item-file").slideDown();
+        }
+    }
+</script>

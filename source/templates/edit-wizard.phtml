@@ -1,0 +1,33 @@
+<ul class="nav nav-pills nav-wizard" id="edit-wizard" >
+    <li data-step="step1">
+        <a href="/" id="edit-wizard-home">Step 1. Provide a file</a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li data-step="step2" class="disabled">
+        <div class="nav-wedge"></div>
+        <a href="#" data-toggle="tab">Step 2. Edit ID3 tags</a>
+        <div class="nav-arrow"></div>
+    </li>
+    <li  data-step="step3" class="disabled">
+        <div class="nav-wedge"></div>
+        <a href="#" data-toggle="tab">Step 3. Receive file back</a>
+    </li>
+</ul>
+<br>
+<script type="text/javascript">
+    $(document).ready(
+        function() {
+            $('#edit-wizard a[data-toggle="tab"]').click(function(event) {event.stopPropagation();});
+            $('#edit-wizard li[data-step="step<?php echo $step;?>"]').addClass('active').removeClass('disabled');
+            $('#edit-wizard-home').click(function(event) {
+                <?php if($step > 1):?>
+                if (!confirm('Are you really wont to start editing new file (in this case all current progress will be lost)?')) {
+                    event.preventDefault();
+                }
+                <?php else:?>
+                    event.preventDefault();
+                <?php endif;?>
+            });
+        }
+    );
+</script>
